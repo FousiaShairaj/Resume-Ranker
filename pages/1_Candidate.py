@@ -1,3 +1,6 @@
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.error("Please log in first.")
+    st.stop()
 import streamlit as st
 from helper import extract_text
 
