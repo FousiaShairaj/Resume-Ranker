@@ -1,5 +1,9 @@
 import streamlit as st
+import streamlit as st
 
+# ✅ Title on top of the login/signup page
+st.set_page_config(page_title="AI Resume Ranker", layout="centered")
+st.markdown("<h1 style='text-align: center; color: navy;'>AI RESUME RANKER</h1>", unsafe_allow_html=True)
 # Initialize user store in session (for demo only)
 if "users" not in st.session_state:
     st.session_state.users = {}  # username: {password, role}
