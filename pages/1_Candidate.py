@@ -23,3 +23,10 @@ if resume_file:
     st.session_state["resume_text"] = resume_text  # 🔑 Store in session
     st.session_state["resume_name"] = resume_file.name
     st.text_area("Resume Preview", value=resume_text, height=200)
+# 📨 Show feedback from recruiter if available
+if "candidate_feedback" in st.session_state:
+    st.subheader("📩 Feedback from Recruiter")
+    feedback = st.session_state["candidate_feedback"]
+    st.markdown(f"**{feedback['resume']}** — {feedback['feedback']}")
+else:
+    st.info("No feedback received yet.")
