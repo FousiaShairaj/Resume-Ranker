@@ -1,4 +1,8 @@
-import streamlit as st  # <-- MUST be first
+import streamlit as st
+
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.error("🔒 Please log in first.")
+    st.stop()
 from helper import extract_text  # or other helpers
 
 # Then add this login guard
