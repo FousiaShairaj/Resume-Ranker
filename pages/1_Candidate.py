@@ -8,6 +8,8 @@ st.write("Upload your resume below.")
 resume_file = st.file_uploader("Upload Resume (PDF, DOCX, TXT)", type=['pdf', 'docx', 'txt'])
 
 if resume_file:
-    text = extract_text(resume_file)
+    resume_text = extract_text(resume_file)
     st.success("Resume uploaded successfully!")
-    st.text_area("Resume Preview (Extracted Text)", value=text, height=200)
+    st.session_state["resume_text"] = resume_text  # 🔑 Store in session
+    st.session_state["resume_name"] = resume_file.name
+    st.text_area("Resume Preview", value=resume_text, height=200)
