@@ -1,15 +1,16 @@
 import streamlit as st
 
-# Dummy user store for demo
+# Dummy users (you can expand this later)
 users = {
     "candidate@example.com": {"password": "pass123", "role": "candidate"},
-    "recruiter@example.com": {"password": "pass456", "role": "recruiter"}
+    "recruiter@example.com": {"password": "pass456", "role": "recruiter"},
 }
 
 st.set_page_config(page_title="Login | AI Resume Ranker")
 
 st.title("🔐 Login to AI Resume Ranker")
 
+# Initialize session state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     st.session_state.role = None
@@ -22,7 +23,7 @@ if not st.session_state.logged_in:
     with col1:
         login_btn = st.button("Login")
     with col2:
-        signup_btn = st.button("Sign up (Not implemented)")
+        signup_btn = st.button("Sign up (Not implemented)")  # Placeholder
 
     if login_btn:
         user = users.get(email)
@@ -36,6 +37,8 @@ if not st.session_state.logged_in:
 
 else:
     st.success(f"✅ You are logged in as a **{st.session_state.role}**")
+
+    # Redirect to appropriate page
     if st.session_state.role == "candidate":
         st.page_link("pages/1_Candidate.py", label="Go to Candidate Page")
     elif st.session_state.role == "recruiter":
