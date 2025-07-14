@@ -27,6 +27,24 @@ if "resume_text" in st.session_state and "jd_text" in st.session_state:
         st.subheader("📊 Resume Ranking Result")
         st.write(f"**{st.session_state['resume_name']}** — Similarity Score: `{score:.2f}%`")
         st.success("Ranking Completed!")
+        # 💬 Feedback Section - only after ranking
+if st.session_state.get("show_feedback", False):
+    st.subheader("💬 Give Feedback on Resume")
+
+    selected_resume = st.session_state["resume_name"]
+    feedback_input = st.text_area("Enter your feedback for the candidate:", key="feedback_input")
+
+    if st.button("Submit Feedback"):
+        if feedback_input.strip():
+            # ✅ Save feedback to session
+            st.session_state["candidate_feedback"] = {
+                "resume": selected_resume,
+                "feedback": feedback_input.strip()
+            }
+            st.success("✅ Feedback submitted for candidate.")
+            st.session_state.feedback_input = ""
+        else:
+            st.warning("⚠️ Please enter feedback before submitting.")
 else:
     st.info("Please make sure both Resume and Job Description are uploaded.")
 
